@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,47 +10,50 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href='{% static "styles.css" %}'>
     
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm" style="background-color:#A04747">
+    <nav class="navbar navbar-expand-sm" style="background-color:#6E1F1B">
         <div class="container-fluid">
             
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="html/blog.html" style="color: white;">Inicio</a>
+                        <a class="nav-link" href="html/blog.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="html/blog.html" style="color: white;">Juegos</a>
+                        <a class="nav-link" href="html/blog.html">Juegos</a>
                     </li>
                 </ul>
                 
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#sobreNosotrosModal" style="color: white;">Sobre Neptuno</a>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#sobreNosotrosModal" >Sobre Neptuno</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin" style="color: white;">Admin</a>
+                        <a class="nav-link" href="admin" >Admin</a>
                 </ul>
             </div>
         </div>
     </nav>
     <br>
-    <h1 class="display-4 text-center rubik-dirt-regular"><u>Neptune's Pirated Games List</u></h1>
+    <h1 class="display-4 text-center rubik-dirt-regular" style="color: #D1D1D1"><u>Neptune's Pirated Games List</u></h1>
     <hr>
 
     
     <div class="container mb-5">
-        <div class="row row-cols-2 row-cols-md-2 g-4">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
             {% for Juego in juegos %}
             <div class="col">
                 <a href="#" class="text-decoration-none">
-                    <div class="card h-100 shadow-sm" style="background-color: #A04747;">
-                        <img src="{{ Juego.imagen.url }}" class="card-img-top" alt="{{ Juego.titulo }}">
-
-                        <div class="card-body" style="color: white;">
+                    <div class="card h-100 shadow-sm">
+                        {% if Juego.imagen %}
+                        <img src="{{ Juego.imagen.url }}" class="card-img-top" alt="{{ Juego.titulo }} - imagen">
+                        {% else %}
+                        <img src="piratedgames/media/imagenes_juegos/img-placeholder-dark.jpg" class="card-img-top" alt="{{ Juego.titulo }} - imagen">
+                        {% endif %}
+                        <div class="card-body">
                             <h5 class="card-title">{{ Juego.titulo }}</h5>
                             <p class="card-text">{{ Juego.descripcion }}</p>
                         </div>
@@ -58,7 +61,7 @@
                 </a>
             </div>
             {% endfor %}
-        </div>
+        </div>        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

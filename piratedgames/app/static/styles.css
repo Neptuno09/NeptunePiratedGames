@@ -1,10 +1,72 @@
-body{
-    background-color: #343131;
+body {
+    background-color: #000000;
     color: white;
 }
-
+.nav-link {
+    color: #D1D1D1;
+}
 .rubik-dirt-regular {
     font-family: "Rubik Dirt", system-ui;
     font-weight: 400;
     font-style: normal;
   }
+
+/* Diseño general de la tarjeta */
+/* Diseño general de la tarjeta */
+.card {
+    background-color: #6E1F1B; /* Fondo rojo oscuro */
+    color: white; /* Texto blanco */
+    border-radius: 15px; /* Bordes redondeados */
+    border: 2px solid #B22222; /* Borde más visible pero no grueso */
+    transition: transform 0.2s, box-shadow 0.2s; /* Animación suave */
+    overflow: hidden; /* Asegura que las imágenes se recorten */
+    padding: 10px; /* Espaciado interno */
+}
+
+/* Título de la tarjeta */
+.card-title {
+    font-size: 1.5rem; /* Tamaño más grande del título */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 10px; /* Espaciado inferior */
+    text-align: center; /* Centrar el texto del título */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Efecto de sombra para destacar */
+    color: #D1D1D1;
+}
+
+/* Texto descriptivo */
+.card-text {
+    font-size: 1rem; /* Tamaño del texto */
+    opacity: 0.85; /* Suaviza el color */
+    text-align: center; /* Centrar la descripción */
+    margin-bottom: 10px; /* Espaciado inferior */
+    color: #D1D1D1;
+}
+
+/* Imagen de la tarjeta */
+.card-img-top {
+    border-top-left-radius: 15px; /* Redondea las esquinas superiores */
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px; /* Redondea las esquinas superiores */
+    border-bottom-right-radius: 15px;
+    height: 150px; /* Ajusta la altura */
+    object-fit: cover; /* Asegura que la imagen se recorte correctamente */
+}
+
+/* Hover en tarjeta */
+.card:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+    border: 2px solid #a63d3d; /* Cambia el color del borde al pasar el mouse */
+}
+
+
+/* Contenedor de tarjetas */
+.row {
+    gap: 20px; /* Espacio entre tarjetas */
+}
+
+/* Estilo del enlace */
+a {
+    text-decoration: none; /* Quita subrayado */
+    color: inherit; /* Mantiene el color blanco */
+}
