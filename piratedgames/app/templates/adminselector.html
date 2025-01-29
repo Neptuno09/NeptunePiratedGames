@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+
+{%block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+           <center> <a href="{%url 'addgames'%}" class="btn btn-danger btn-lg btn-block">Administrar Juegos</a></center>
+        </div>
+        <div class="col">
+            <center><a href="{%url 'admin:index'%}" class="btn btn-danger btn-lg btn-block">Administrar Django</a></center>
+        </div>
+    </div>
+{%endblock%}

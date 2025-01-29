@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <center><h2 class="mb-4">Iniciar Sesión</h2></center>
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+        <div class="mb-3">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+        </div>
+        <button type="submit" class="btn btn-danger">Ingresar</button>
+    </form>
+</div>
+{% endblock %}

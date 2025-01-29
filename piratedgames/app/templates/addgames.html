@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Agregar un Juego</h2>
+    <form method="POST" enctype="multipart/form-data" class="addgame-form">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_titulo" class="form-label">Título del Juego</label>
+            {{ form.titulo }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_descripcion" class="form-label">Descripción</label>
+            {{ form.descripcion }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_imagen" class="form-label">Imagen (URL)</label>
+            {{ form.imagen }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_url" class="form-label">Enlace</label>
+            {{ form.url }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_genero" class="form-label">Género</label>
+            {{ form.genero }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Juego</button>
+        <button type="submit" name="agregar_otro" class="btn btn-secondary">Agregar otro juego</button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancelar</button>
+    </form>
+</div>
+
+<!-- Modal de Confirmación -->
+<div class="modal fade modal-agregar-juego" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelModalLabel">¿Estás seguro?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Si cancelas, los datos no se guardarán.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <a href="{% url 'inicio' %}" class="btn btn-success">Cancelar y regresar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
