@@ -42,7 +42,7 @@
                             <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
                         </li>
                     {%endif%}
-                    {%if request.user.is_authenticated%}
+                    {% if request.user.is_superuser %}
                     <li class="nav-item">
                         <a class="nav-link" href="{%url 'adminselector'%}">Admin</a>
                     </li>
