@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Juego
 from django.contrib.auth import authenticate, login
 from .forms import CustomLoginForm
@@ -36,3 +36,7 @@ def addgames(request):
     else:
         form = JuegoForm()
     return render(request, 'addgames.html', {'form': form})
+
+def gamepage(request, slug):
+    juego = get_object_or_404(Juego, slug=slug)  # Obtiene el juego por su slug
+    return render(request, 'gamepage.html', {'juego': juego})

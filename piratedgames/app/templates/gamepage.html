@@ -1,3 +1,6 @@
+{%extends "base.html"%}
 {%block content%}
-
+<h1 class="display-3 text-center" style="color: #D1D1D1">{{ juego.titulo }}</h1>
+<br>
+<center><img src="{% if juego.imagen %}{{ juego.imagen }}{% else %}img-placeholder-dark.jpg{% endif %}" alt="{{ juego.titulo }} - imagen" style="border-radius: 15px"></center>
 {%endblock%}

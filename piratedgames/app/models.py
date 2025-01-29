@@ -1,5 +1,7 @@
 from django.db import models
 from .validators import validate_image_url  # Importar la función de validación personalizada
+from django.utils.text import slugify
+
 GENERO_CHOICES = [
     ('NULL', 'Género no especificado'),
     ('ACC', 'Acción'),
@@ -34,5 +36,12 @@ class Juego(models.Model):
         choices=GENERO_CHOICES,
         default='NULL',  # Género por defecto
     )
+    slug = models.SlugField(unique=True, blank=True, null=True)  # Campo slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:  # Si no tiene slug, lo genera automáticamente
+            self.slug = slugify(self.titulo)
+        super().save(*args, **kwargs)
     def __str__(self):
         return self.titulo  
+    

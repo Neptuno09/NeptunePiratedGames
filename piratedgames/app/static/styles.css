@@ -5,6 +5,10 @@ body {
 .nav-link {
     color: #D1D1D1;
 }
+.nav-link {
+    color: #D1D1D1;
+}
+
 .rubik-dirt-regular {
     font-family: "Rubik Dirt", system-ui;
     font-weight: 400;
@@ -54,7 +58,7 @@ body {
 
 /* Hover en tarjeta */
 .card:hover {
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    transform: scale(1.01); /* Aumenta ligeramente el tamaño */
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
     border: 2px solid #a63d3d; /* Cambia el color del borde al pasar el mouse */
 }
@@ -189,21 +193,18 @@ body {
     transition: width 0.3s ease;  /* Transición suave al cambiar el tamaño */
 }
 
-.navbar .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    z-index: 1050; /* Asegúrate que el dropdown esté por encima de otros elementos */
-    left: 0;
-    right: 0;
-}
-
-.navbar-nav .dropdown:hover .dropdown-menu {
-    display: block;
-}
-
 .login-form {
     padding: 20px;            /* Padding general */
     max-width: 400px;         /* Limita el ancho máximo */
+    margin: 0 auto;           /* Centra el formulario */
+    background-color: #6E1F1B; /* Color de fondo */
+    border-radius: 8px;       /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.modalinfo {
+    padding: 20px;            /* Padding general */
+    max-width: 500px;         /* Limita el ancho máximo */
     margin: 0 auto;           /* Centra el formulario */
     background-color: #6E1F1B; /* Color de fondo */
     border-radius: 8px;       /* Bordes redondeados */
@@ -229,6 +230,14 @@ body {
 .modal-agregar-juego .modal-footer {
     border-top: none; /* Eliminar borde superior del pie de página */
 }
+
+.modal-header {
+    border-bottom: none; /* Eliminar borde inferior del encabezado */
+}
+.modal-footer {
+    border-top: none; /* Eliminar borde superior del pie de página */
+}
+
 @media (max-width: 576px) {
     .search-container {
         flex-direction: rown; /* Coloca el campo de búsqueda y el botón uno debajo del otro */

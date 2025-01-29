@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 
 {%block content%}
+<h1 class="display-4 text-center rubik-dirt-regular" style="color: #D1D1D1"><u>Neptune's Pirated Games List</u></h1>
+    <hr>
 <div class="container mb-5">
     <div class="row row-cols-1 row-cols-md-2 g-4">
-        {% for Juego in juegos %}
+        {% for juego in juegos %}
         <div class="col">
-            <a href="#" class="text-decoration-none">
-                <div class="card h-100 shadow-sm">
-                    <img src="{% if Juego.imagen %}{{ Juego.imagen }}{% else %}img-placeholder-dark.jpg{% endif %}" class="card-img-top" alt="{{ Juego.titulo }} - imagen">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ Juego.titulo }}</h5>
-                        <p class="card-text">{{ Juego.descripcion }}</p>
-                    </div>
+        <a href="{% url 'gamepage' slug=juego.slug %}" class="text-decoration-none">
+            <div class="card h-100 shadow-sm">
+                <img src="{% if juego.imagen %}{{ juego.imagen }}{% else %}img-placeholder-dark.jpg{% endif %}" class="card-img-top" alt="{{ juego.titulo }} - imagen">
+                <div class="card-body">
+                    <h5 class="card-title">{{ juego.titulo }}</h5>
+                    <p class="card-text">{{ juego.descripcion }}</p>
                 </div>
-            </a>
-        </div>
-        {% endfor %}
-    </div>     
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
 {%endblock%}

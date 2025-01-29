@@ -11,31 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
     <link rel="stylesheet" href='{% static "styles.css" %}'>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navbarToggler = document.querySelector('.navbar-toggler');
-            const navbarCollapse = document.querySelector('#navbarNav');
-    
-            navbarToggler.addEventListener('click', function () {
-                const isExpanded = navbarToggler.getAttribute('aria-expanded') === 'true';
-    
-                // Cambiar el estado de "aria-expanded"
-                navbarToggler.setAttribute('aria-expanded', !isExpanded);
-    
-                // Alternar la clase 'collapse'
-                if (isExpanded) {
-                    navbarCollapse.classList.add('collapse');
-                } else {
-                    navbarCollapse.classList.remove('collapse');
-                }
-            });
-        });
-    </script>
-    
-
-    
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg" style="background-color:#6E1F1B">
         <div class="container-fluid">
@@ -45,10 +22,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'inicio'%}">Inicio</a>
+                        <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'juegos'%}">Juegos</a>
+                        <a class="nav-link" href="{% url 'juegos' %}">Juegos</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -56,17 +33,31 @@
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#sobreNosotrosModal">Sobre Neptuno</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'login'%}">Admin</a>
+                        <a class="nav-link" href="{% url 'login' %}">Admin</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    
+    <!-- Modal sobre Neptuno -->
+    <div class="modal fade" id="sobreNosotrosModal" tabindex="-1" aria-labelledby="sobreNosotrosLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content modalinfo">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sobreNosotrosLabel">Sobre Nep</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tenia ganas de hacer una pagina de juegos piratas y bueno acá está</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <br>
-    <h1 class="display-4 text-center rubik-dirt-regular" style="color: #D1D1D1"><u>Neptune's Pirated Games List</u></h1>
-    <hr>
-
     {%block content%} {%endblock%}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

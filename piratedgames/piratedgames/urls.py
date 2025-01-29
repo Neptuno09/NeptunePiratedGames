@@ -27,6 +27,7 @@ urlpatterns = [
     path('adminselector/', views.adminselector, name='adminselector'),
     path('login/', views.login_view, name='login'),
     path('addgames', views.addgames, name='addgames'),
+    path('juego/<slug:slug>/', views.gamepage, name='gamepage'),
     
 ]
 
