@@ -26,8 +26,11 @@ urlpatterns = [
     path('juegos/', views.juegos, name='juegos'),
     path('adminselector/', views.adminselector, name='adminselector'),
     path('login/', views.login_view, name='login'),
+    path('register/', views.register_view, name='register'),
     path('addgames', views.addgames, name='addgames'),
     path('juego/<slug:slug>/', views.gamepage, name='gamepage'),
+    path('account', views.account, name='account'),
+    path('logout/', views.logout_view, name='logout'),
     
 ]
 

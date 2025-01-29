@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Perfil de Usuario</h2>
+
+    <div class="card p-4">
+        <p><strong>Usuario:</strong> {{ request.user.username }}</p>
+        <p><strong>Correo:</strong> {{ request.user.email }}</p>
+        <p><strong>Fecha de Registro:</strong> {{ request.user.date_joined|date:"d/m/Y" }}</p>
+    </div>
+</div>
+<br>
+<center >
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+    </form>
+</center>
+{% endblock %}

@@ -29,11 +29,25 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
+                    {%if request.user.is_authenticated%}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'account'%}">Cuenta</a>
+                        </li>
+                    {%else%}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+                        </li>
+                    {%endif%}
+                    {%if request.user.is_authenticated%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'adminselector'%}">Admin</a>
+                    </li>
+                    {%endif%}
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#sobreNosotrosModal">Sobre Neptuno</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Admin</a>
                     </li>
                 </ul>
             </div>

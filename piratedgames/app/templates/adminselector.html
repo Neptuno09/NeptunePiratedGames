@@ -10,4 +10,11 @@
             <center><a href="{%url 'admin:index'%}" class="btn btn-danger btn-lg btn-block">Administrar Django</a></center>
         </div>
     </div>
+<br>
+<center>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-lg btn-block">Cerrar Sesión</button>
+    </form>
+</center>
 {%endblock%}
