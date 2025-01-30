@@ -1,7 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import Juego
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group, Permission
+from .models import CustomUser
+from colorfield.forms import ColorField
 
 class RegisterForm(UserCreationForm):
     username = forms.CharField(
@@ -22,7 +24,7 @@ class RegisterForm(UserCreationForm):
     )
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['username', 'email', 'password1', 'password2']
 
 class CustomLoginForm(AuthenticationForm):
@@ -40,3 +42,19 @@ class JuegoForm(forms.ModelForm):
             'imagen': forms.URLInput(attrs={'class': 'form-control'}),
             'url': forms.URLInput(attrs={'class': 'form-control'}),
         }
+
+class UserEditForm(forms.ModelForm):
+    descripcion = forms.CharField(
+        label="Descripción",
+        required=False,
+        widget=forms.Textarea(attrs={'class': 'form-control'})
+    )
+    color = ColorField(
+        label="Color de perfil",
+        required=False,
+        widget=forms.TextInput(attrs={'type': 'color', 'class': 'form-control'})
+    )
+
+    class Meta:
+        model = CustomUser
+        fields = ['descripcion', 'color']

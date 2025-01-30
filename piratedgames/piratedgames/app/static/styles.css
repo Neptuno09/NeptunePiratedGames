@@ -1,0 +1,320 @@
+body {
+    background-color: #000000;
+    color: white;
+}
+.nav-link {
+    color: #D1D1D1;
+}
+.nav-link {
+    color: #D1D1D1;
+}
+
+.rubik-dirt-regular {
+    font-family: "Rubik Dirt", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+/* Diseño general de la tarjeta */
+/* Diseño general de la tarjeta */
+.card {
+    background-color: #6E1F1B; /* Fondo rojo oscuro */
+    color: white; /* Texto blanco */
+    border-radius: 15px; /* Bordes redondeados */
+    border: 2px solid #B22222; /* Borde más visible pero no grueso */
+    transition: transform 0.2s, box-shadow 0.2s; /* Animación suave */
+    overflow: hidden; /* Asegura que las imágenes se recorten */
+    padding: 10px; /* Espaciado interno */
+}
+
+
+
+/* Título de la tarjeta */
+.card-title {
+    font-size: 1.5rem; /* Tamaño más grande del título */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 10px; /* Espaciado inferior */
+    text-align: center; /* Centrar el texto del título */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Efecto de sombra para destacar */
+    color: #D1D1D1;
+}
+
+/* Texto descriptivo */
+.card-text {
+    font-size: 1rem; /* Tamaño del texto */
+    opacity: 0.85; /* Suaviza el color */
+    text-align: center; /* Centrar la descripción */
+    margin-bottom: 10px; /* Espaciado inferior */
+    color: #D1D1D1;
+}
+
+/* Imagen de la tarjeta */
+.card-img-top {
+    border-top-left-radius: 15px; /* Redondea las esquinas superiores */
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px; /* Redondea las esquinas superiores */
+    border-bottom-right-radius: 15px;
+    height: 150px; /* Ajusta la altura */
+    object-fit: cover; /* Asegura que la imagen se recorte correctamente */
+}
+
+/* Hover en tarjeta */
+.card:hover {
+    transform: scale(1.01); /* Aumenta ligeramente el tamaño */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+    border: 2px solid #a63d3d; /* Cambia el color del borde al pasar el mouse */
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.col {
+    flex: 1 1 calc(50% - 20px);
+    box-sizing: border-box;
+}
+@media (max-width: 768px) {
+    .col {
+        flex: 1 1 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col {
+        flex: 1 1 calc(33.333% - 20px);
+    }
+}
+
+.row .col:nth-child(odd):last-child {
+    flex: 1 1 100%;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.search-container {
+    max-width: 600px; /* Limitar el ancho máximo para pantallas grandes */
+    width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho disponible */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);/* Ancho ajustado al contenido */
+    overflow: hidden;
+    
+}
+
+.search-input {
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    outline: none;
+    flex-grow: 1; /* Hace que la barra de búsqueda ocupe el espacio disponible */
+}
+
+.search-button {
+    background-color: crimson;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+.search-button:hover {
+    background-color: #e44848;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px; /* Espacio entre los botones */
+    padding: 2rem;
+}
+
+.product-card {
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+}
+
+.no-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 150px; /* Altura fija para el texto */
+    background-color: #f0f0f0; /* Color de fondo para la alternativa */
+    font-size: 20px;
+    color: #888;
+    text-align: center;
+}
+
+.product-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.product-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #888;
+}
+
+/* Estilo inicial del logo */
+.logo {
+    width: 500px;
+    height: auto;
+    transition: width 0.3s ease;  /* Transición suave al cambiar el tamaño */
+}
+
+.login-form {
+    padding: 20px;            /* Padding general */
+    max-width: 400px;         /* Limita el ancho máximo */
+    margin: 0 auto;           /* Centra el formulario */
+    background-color: #6E1F1B; /* Color de fondo */
+    border-radius: 8px;       /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.modalinfo {
+    padding: 20px;            /* Padding general */
+    max-width: 500px;         /* Limita el ancho máximo */
+    margin: 0 auto;           /* Centra el formulario */
+    background-color: #6E1F1B; /* Color de fondo */
+    border-radius: 8px;       /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.addgame-form {
+    padding: 20px;            /* Padding general */
+    max-width: 500px;         /* Limita el ancho máximo */
+    margin: 0 auto;           /* Centra el formulario */
+    background-color: #6E1F1B; /* Color de fondo */
+    border-radius: 8px;       /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+.modal-agregar-juego .modal-content {
+    background-color: #6E1F1B;
+    color: #D1D1D1;
+}
+.modal-agregar-juego .modal-header {
+    border-bottom: none; /* Eliminar borde inferior del encabezado */
+}
+
+.modal-agregar-juego .modal-footer {
+    border-top: none; /* Eliminar borde superior del pie de página */
+}
+
+.modal-header {
+    border-bottom: none; /* Eliminar borde inferior del encabezado */
+}
+.modal-footer {
+    border-top: none; /* Eliminar borde superior del pie de página */
+}
+
+.user-card {
+    background-color: rgb(49, 49, 49);
+    color: white; /* Texto blanco */
+    border-radius: 15px; /* Bordes redondeados */
+    border: 2px solid #242424; /* Borde más visible pero no grueso */
+    transition: transform 0.2s, box-shadow 0.2s; /* Animación suave */
+    overflow: hidden; /* Asegura que las imágenes se recorten */
+    padding: 10px; /* Espaciado interno */
+}
+
+@media (max-width: 576px) {
+    .search-container {
+        flex-direction: rown; /* Coloca el campo de búsqueda y el botón uno debajo del otro */
+        align-items: stretch;  /* Asegura que el input y el botón ocupen todo el ancho */
+    }
+    .search-button {
+        width: 15%; /* Hace que el botón ocupe todo el ancho disponible en pantallas pequeñas */
+    }
+    .search-input {
+        width: 70%; /* Hace que el input ocupe todo el ancho disponible en pantallas pequeñas */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);  /* Mostrar 2 productos por fila */
+        padding: 1rem;  /* Reducir el padding */
+    }
+
+    .product-card {
+        margin: 0;  /* Eliminar márgenes */
+    }
+
+    .product-title {
+        font-size: 16px;  /* Reducir tamaño de fuente en títulos */
+    }
+
+    .product-price {
+        font-size: 14px;  /* Reducir tamaño de fuente en precios */
+    }
+
+    .no-image {
+        height: 120px;  /* Reducir altura de la imagen de reemplazo */
+    }
+    .logo {
+        width: 120px;
+    }
+}
+
+/* Media Query para dispositivos medianos (tabletas) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .search-container {
+        width: 80%;  /* La barra de búsqueda ocupa el 80% del ancho */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);  /* Mostrar 3 productos por fila */
+    }
+
+    .product-title {
+        font-size: 17px;  /* Reducir tamaño de fuente en títulos */
+    }
+
+    .product-price {
+        font-size: 15px;  /* Reducir tamaño de fuente en precios */
+    }
+    .logo {
+        width: 160px;
+    }
+}
+
+/* Media Query para dispositivos grandes (pantallas de escritorio) */
+@media (min-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(5, 1fr);  /* Mostrar 5 productos por fila */
+    }
+    .logo {
+        width: 250px;
+    }
+}

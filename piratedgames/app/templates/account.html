@@ -1,20 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="mb-4">Perfil de Usuario</h2>
 
-    <div class="card p-4">
-        <p><strong>Usuario:</strong> {{ request.user.username }}</p>
-        <p><strong>Correo:</strong> {{ request.user.email }}</p>
-        <p><strong>Fecha de Registro:</strong> {{ request.user.date_joined|date:"d/m/Y" }}</p>
+<!--USUARIO Y FECHA DE CREACION-->
+<div class="container mt-5">
+    <h2 class="mb-4">{{ request.user.username }}</h2>
+    <h5>Fecha de creación: {{ request.user.date_joined|date:"d/m/Y" }}</h5>
+</div>
+<!--DESCRIPCION-->
+    <div class="container mt-5">
+        <div class="card p-4" style="background-color: {{color}}; border-color: {{darker_color}};">
+            <h3 class="mb-3">Descripción </h3>
+            <p>{{user.descripcion}}</p>
+        </div>
+            
     </div>
 </div>
+<!--FORMULARIO PARA CAMBIAR DESCRIPCION Y COLOR-->
+<div class="container mt-5">
+    <div class="card p-4" style="background-color: {{color}}; border-color: {{darker_color}};">
+        <h5>Cambiar descripción 👇(esto solo lo ves vos, los demás usuarios que vean tu cuenta no van a ver este cuadro.)</h5>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.descripcion }}
+            <br>
+            <button type="submit" class="btn btn-success">Guardar cambios</button>
+        </form>
+    </div>
+    <div class="container mt-5">
+        <center>
+            <div class="card p-4" style="background-color: {{color}}; border-color: {{darker_color}};">
+                <h5>Cambiar color</h5>
+                <br><br>
+                <form method="post">
+                    {% csrf_token %}
+                        <div class="color-input">
+                        {{ form.color }}
+                        </div>
+                    <br>
+                    <button type="submit" class="btn btn-success">Guardar cambios</button>
+                </form>
+            </div>
+        </center>
 <br>
+<!--BOTON PARA CERRAR SESION-->
 <center >
     <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
     </form>
 </center>
+<!---_________________________________->
+<br>
 {% endblock %}

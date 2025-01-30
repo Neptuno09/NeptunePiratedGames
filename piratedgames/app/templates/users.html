@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        {% for user in users %}
+        <div class="col-md-4">
+            <div class="card mb-4" style="background-color: {{ user.color }}; border-color: {{ user.darker_color }};">
+                <div class="card-header">
+                    <h2 class="h5">{{ user.username }}</h2>
+                </div>
+                <div class="card-body">
+                    <p> {% if user.descripcion %}
+                        {{ user.descripcion }}
+                        {% else %}
+                            <center>Este usuario no tiene ninguna descripción.</center>
+                        {% endif %}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}

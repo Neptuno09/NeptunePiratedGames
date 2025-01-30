@@ -29,8 +29,10 @@ urlpatterns = [
     path('register/', views.register_view, name='register'),
     path('addgames', views.addgames, name='addgames'),
     path('juego/<slug:slug>/', views.gamepage, name='gamepage'),
-    path('account', views.account, name='account'),
     path('logout/', views.logout_view, name='logout'),
+    path('users/', views.users, name='users'),
+    path('user/<str:username>/', views.see_user, name='see_user'),
+    path('account', views.edit_profile, name='account'),
     
 ]
 

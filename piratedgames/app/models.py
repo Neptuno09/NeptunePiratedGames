@@ -1,6 +1,8 @@
 from django.db import models
 from .validators import validate_image_url  # Importar la función de validación personalizada
 from django.utils.text import slugify
+from django.contrib.auth.models import AbstractUser, Group, Permission
+from colorfield.fields import ColorField
 
 GENERO_CHOICES = [
     ('NULL', 'Género no especificado'),
@@ -45,3 +47,10 @@ class Juego(models.Model):
     def __str__(self):
         return self.titulo  
     
+class CustomUser(AbstractUser):
+    descripcion = models.TextField(blank=True, null=True)
+    groups = models.ManyToManyField(Group, related_name='customuser_groups')
+    user_permissions = models.ManyToManyField(Permission, related_name='customuser_permissions')
+    color = ColorField(default='#313131', format='hex')
+    def __str__(self):
+        return self.username

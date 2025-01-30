@@ -27,6 +27,8 @@ body {
     padding: 10px; /* Espaciado interno */
 }
 
+
+
 /* Título de la tarjeta */
 .card-title {
     font-size: 1.5rem; /* Tamaño más grande del título */
@@ -238,6 +240,18 @@ body {
     border-top: none; /* Eliminar borde superior del pie de página */
 }
 
+.user-card {
+    background-color: #313131;
+    color: white; /* Texto blanco */
+    border-radius: 15px; /* Bordes redondeados */
+    border: 2px solid #242424; /* Borde más visible pero no grueso */
+    transition: transform 0.2s, box-shadow 0.2s; /* Animación suave */
+    overflow: hidden; /* Asegura que las imágenes se recorten */
+    padding: 10px; /* Espaciado interno */
+}
+.color-input {
+    width: 100px !important; /* Ajusta el tamaño según tus necesidades */
+}
 @media (max-width: 576px) {
     .search-container {
         flex-direction: rown; /* Coloca el campo de búsqueda y el botón uno debajo del otro */
