@@ -1,0 +1,119 @@
+{%extends 'base.html'%}
+
+{% block content %}
+<div class="container mt-5">
+    <center><h2>Editar {{juego.titulo}}</h2></center>
+    <br>
+    <form method="POST" enctype="multipart/form-data" class="addgame-form">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_descripcion" class="form-label">Descripción actual:</label>
+            <p>{{ juego.descripcion_html|safe }}</p>
+            {{ form.descripcion }}
+        </div>
+        <hr>
+        <div class="mb-3">
+            <label for="id_imagen" class="form-label">Imagen actual:</label>
+            <img src="{{ juego.imagen }}" class="img-fluid" alt="{{ juego.titulo }} - imagen" style="border-radius: 15px">
+            <br><br>
+            <p>Para editarla, introduce la URL de la nueva imagen:</p>
+            {{ form.imagen }}
+        </div>
+        <hr>
+        <div class="mb-3">
+            <label for="id_url" class="form-label">Enlace actual:</label>
+            <p>{{ juego.url }}</p>
+            {{ form.url }}
+        </div>
+        <hr>
+        <div class="mb-3">
+            <label for="id_genero" class="form-label">Género actual:</label>
+            <p>
+                {% if juego.genero == 'NULL' %}
+                    Género no especificado
+                {% elif juego.genero == 'ACC' %}
+                    Acción
+                {% elif juego.genero == 'HOR' %}
+                    Horror
+                {% elif juego.genero == 'ADV' %}
+                    Aventura
+                {% elif juego.genero == 'RPG' %}
+                    RPG
+                {% elif juego.genero == 'SIM' %}
+                    Simulador
+                {% elif juego.genero == 'DEP' %}
+                    Deportes
+                {% elif juego.genero == 'EST' %}
+                    Estrategia
+                {% elif juego.genero == 'PLT' %}
+                    Plataformas
+                {% elif juego.genero == 'PZL' %}
+                    Puzle
+                {% elif juego.genero == 'CRG' %}
+                    Carreras
+                {% elif juego.genero == 'LCH' %}
+                    Lucha
+                {% elif juego.genero == 'MSO' %}
+                    Musical
+                {% elif juego.genero == 'TIR' %}
+                    Tiro
+                {% elif juego.genero == 'OTR' %}
+                    Otros
+                {% elif juego.genero == 'FIC' %}
+                    Ficción interactiva
+                {% elif juego.genero == 'MMO' %}
+                    Multijugador masivo en línea
+                {% elif juego.genero == 'RTS' %}
+                    Estrategia en tiempo real
+                {% elif juego.genero == 'TAB' %}
+                    Juegos de mesa
+                {% elif juego.genero == 'TRV' %}
+                    Trivia
+                {% elif juego.genero == 'VR' %}
+                    Realidad virtual
+                {% else %}
+                    Género desconocido
+                {% endif %}
+            </p>
+            <p>Cambiar género:</p>  
+            {{ form.genero }}
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary">Guardar Juego</button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancelar</button>
+    </form>
+</div>
+<br>
+
+<!-- Modal de Confirmación -->
+<div class="modal fade modal-agregar-juego" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelModalLabel">¿Estás seguro?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Si cancelas, los datos no se guardarán.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <a href="{% url 'inicio' %}" class="btn btn-success">Cancelar y regresar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<script>
+  var simplemde = new SimpleMDE({ 
+      element: document.getElementById("descripcion"),
+      spellChecker: false,
+      forceSync: true,  // Asegura que el contenido se guarde en el campo textarea original
+      autosave: {
+          enabled: true,
+          unique_id: "game_description"
+      }
+  });
+</script>

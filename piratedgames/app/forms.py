@@ -34,9 +34,13 @@ class CustomLoginForm(AuthenticationForm):
 class JuegoForm(forms.ModelForm):
     class Meta:
         model = Juego
-        fields = ['titulo', 'descripcion', 'imagen', 'url', 'genero']
+        fields = ['titulo', 'descripcion', 'imagen', 'url', 'genero']  # No incluimos el campo 'slug'
         widgets = {
-            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'descripcion': forms.Textarea(attrs={
+                'placeholder': 'Escribe una descripción... (puedes usar Markdown)',
+                'class': 'form-control',
+                'rows': 5
+            }),
             'genero': forms.Select(attrs={'class': 'form-control'}),
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'imagen': forms.URLInput(attrs={'class': 'form-control'}),

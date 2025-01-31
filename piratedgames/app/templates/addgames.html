@@ -11,8 +11,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="id_descripcion" class="form-label">Descripción</label>
-            {{ form.descripcion }}
+          <label for="id_descripcion" class="form-label">Descripción</label>
+          <textarea name="descripcion" id="descripcion" placeholder="Escribe una descripción... (puedes usar Markdown)"></textarea>
         </div>
 
         <div class="mb-3">
@@ -55,3 +55,15 @@
   </div>
 </div>
 {% endblock %}
+
+<script>
+  var simplemde = new SimpleMDE({ 
+      element: document.getElementById("descripcion"),
+      spellChecker: false,
+      forceSync: true,  // Asegura que el contenido se guarde en el campo textarea original
+      autosave: {
+          enabled: true,
+          unique_id: "game_description"
+      }
+  });
+</script>

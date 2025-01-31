@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+
+{% block content %}
+{% for juego in juegos %}
+        <div class="col">
+        <a href="{% url 'editgame' slug=juego.slug %}" class="text-decoration-none">
+            <center>
+                <div class="card" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ juego.titulo }}</h5>
+                    </div>
+                </div>
+            </center>
+        </a>
+    </div>
+    <br>
+    {% endfor %}
+    <div class="col">
+        <a href="{% url 'addgames' %}" class="text-decoration-none">
+            <center>
+                <div class="card" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Agregar otro juego</h5>
+                    </div>
+                </div>
+            </center>
+        </a>
+    </div>
+{%endblock%}

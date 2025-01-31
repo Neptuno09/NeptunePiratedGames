@@ -33,6 +33,8 @@ urlpatterns = [
     path('users/', views.users, name='users'),
     path('user/<str:username>/', views.see_user, name='see_user'),
     path('account', views.edit_profile, name='account'),
+    path('editgame/<slug:slug>/', views.editgame, name='editgame'),
+    path('gamelist/', views.gamelist, name='gamelist'),
     
 ]
 

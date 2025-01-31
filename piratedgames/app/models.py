@@ -3,6 +3,7 @@ from .validators import validate_image_url  # Importar la función de validació
 from django.utils.text import slugify
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from colorfield.fields import ColorField
+import markdown
 
 GENERO_CHOICES = [
     ('NULL', 'Género no especificado'),
@@ -44,6 +45,11 @@ class Juego(models.Model):
         if not self.slug:  # Si no tiene slug, lo genera automáticamente
             self.slug = slugify(self.titulo)
         super().save(*args, **kwargs)
+
+    def descripcion_html(self):
+        """Convierte la descripción en Markdown a HTML"""
+        return markdown.markdown(self.descripcion)
+    
     def __str__(self):
         return self.titulo  
     

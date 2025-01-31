@@ -12,6 +12,7 @@ def juegos(request):
     juegos = Juego.objects.all()
     return render(request, 'juegos.html', {'juegos': juegos})
 
+
 def adminselector(request):
     return render(request, 'adminselector.html')
 
@@ -53,9 +54,16 @@ def addgames(request):
         form = JuegoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('inicio')  # Redirige a donde quieras
+            
+            # Verifica si se presionó "Agregar otro juego"
+            if 'agregar_otro' in request.POST:
+                return redirect('addgames')  # Redirige a la misma página para agregar otro juego
+            
+            return redirect('inicio')  # Si no, redirige a 'inicio'
+
     else:
         form = JuegoForm()
+    
     return render(request, 'addgames.html', {'form': form})
 
 def gamepage(request, slug):
@@ -110,3 +118,20 @@ def see_user(request, username):
     # Obtiene el perfil basado en el nombre de usuario
     user = get_object_or_404(CustomUser, usuario__username=username)
     return render(request, 'user.html', {'user': user})
+def gamelist(request):
+    juegos = Juego.objects.all()
+    return render(request, 'gamelist.html', {'juegos': juegos})
+
+def editgame(request, slug):
+    juego = get_object_or_404(Juego, slug=slug)
+    if request.method == 'POST':
+        form = JuegoForm(request.POST, instance=juego)
+        if form.is_valid():
+            form.save()  # Esto no modificará el `slug` porque no lo estamos incluyendo en el formulario
+            return redirect('gamelist')  # Redirige a la lista de juegos
+        else:
+            print("Formulario no válido", form.errors)
+    else:
+        form = JuegoForm(instance=juego)
+
+    return render(request, 'editgame.html', {'form': form, 'juego': juego})
