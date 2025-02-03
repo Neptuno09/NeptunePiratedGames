@@ -11,7 +11,11 @@
     <div class="container mt-5">
         <div class="card p-4" style="background-color: {{color}}; border-color: {{darker_color}};">
             <h3 class="mb-3">Descripción </h3>
-            <p>{{user.descripcion}}</p>
+            {% if user.descripcion %}
+                <p>{{ user.descripcion }}</p>
+            {% else %}
+                <p>El usuario no tiene descripción.</p>
+            {% endif %}
         </div>
             
     </div>
@@ -50,6 +54,5 @@
         <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
     </form>
 </center>
-<!---_________________________________->
 <br>
 {% endblock %}

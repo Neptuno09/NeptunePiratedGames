@@ -156,14 +156,14 @@ def users(request):
     return render(request, 'users.html', {'users': users, 'color': user_color, 'darker_color': darker_color})
 
 def see_user(request, username):
-    user = get_object_or_404(CustomUser, usuario__username=username)
+    user = get_object_or_404(CustomUser, username=username)
 
     if request.user.is_authenticated:
         user_color = request.user.color
     else:
         user_color = '#FF0000'  # Color predeterminado
 
-    darker_color = darken_color(user_color, 0.3)
+    darker_color = darken_color(user_color, 0.5)
 
     return render(request, 'user.html', {'user': user, 'color': user_color, 'darker_color': darker_color})
 

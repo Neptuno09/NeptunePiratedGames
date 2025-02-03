@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%block navcolor%}{{color}}{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4" style="background-color: {{ user.color }}; border: {{ darker_color }};">
+            <h1>{{user.username}}</h1>
+            <h4>{{user.date_joined}}</h4>
+            </div>  
+        </div>
+        <div class="col-md-12">
+            <div class="card mb-4" style="background-color: {{ user.color }}; border: {{ darker_color }};">
+            <h2>Descripción</h2>
+            <p> {% if user.descripcion %}
+                {{ user.descripcion }}
+                {% else %}
+                    Este usuario no tiene ninguna descripción.
+                {% endif %}</p>
+            </div>  
+        </div>
+    </div>
+</div>
+{%endblock%} 

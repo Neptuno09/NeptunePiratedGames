@@ -50,8 +50,22 @@ body {
     object-fit: cover; /* Asegura que la imagen se recorte correctamente */
 }
 
-/* Hover en tarjeta */
+.card .cardusers {
+    height: 250px; /* Ajusta la altura según sea necesario */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
+.card-body p {
+    max-height: 4.5em; /* Ajusta para limitar el texto */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Número de líneas visibles */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 
 .container {
     width: 90%;

@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <center><h2>Editar {{juego.titulo}}</h2></center>
     <br>
-    <form method="POST" enctype="multipart/form-data" class="addgame-form" style="background-color: {{color}}; border: {{color}}">
+    <form method="POST" enctype="multipart/form-data" class="addgame-form" style="background-color: {{color}}; border: {{darker_color}}">
         {% csrf_token %}
         
         <div class="mb-3">
