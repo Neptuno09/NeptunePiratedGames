@@ -1,20 +1,21 @@
 {%extends "base.html"%}
-
+{%block navcolor%}{{color}}{%endblock%}
 {%block content%}
+<br><br><br><br><br>
 <div class="container">
     <div class="row">
         <div class="col">
-           <center> <a href="{%url 'gamelist'%}" class="btn btn-danger btn-lg btn-block">Administrar Juegos</a></center>
+           <center> <a href="{%url 'gamelist'%}" class="btn btn-danger btn-lg btn-block" style="background-color: {{color}}; border: {{color}}">Administrar Juegos</a></center>
         </div>
         <div class="col">
-            <center><a href="{%url 'admin:index'%}" class="btn btn-danger btn-lg btn-block">Administrar Django</a></center>
+            <center><a href="{%url 'admin:index'%}" class="btn btn-danger btn-lg btn-block" style="background-color: {{color}}; border: {{color}}">Administrar Django</a></center>
         </div>
     </div>
 <br>
 <center>
     <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger btn-lg btn-block">Cerrar Sesión</button>
+        <button type="submit" class="btn btn-danger btn-lg btn-block" style="background-color: {{color}}; border: {{color}}">Cerrar Sesión</button>
     </form>
 </center>
 {%endblock%}

@@ -1,4 +1,5 @@
 {%extends "base.html"%}
+{%block navcolor%}{{color}}{%endblock%}
 {%block content%}
 <h1 class="display-3 text-center" style="color: #D1D1D1">{{ juego.titulo }}</h1>
 <br>
@@ -7,4 +8,10 @@
 <div class="container-fluid mt-5 border rounded" style="color: #D1D1D1; max-width: 800px">
     <h3>Descripción</h3>
     <p>{{ juego.descripcion_html|safe }}</p>
+</div>
+<br>
+<div class="container-fluid mt-5 border rounded" style="color: #D1D1D1; max-width: 800px">
+    <h3>Descargar</h3>
+    <p>{{ juego.url }}</p>
+</div>
 {%endblock%}

@@ -4,17 +4,42 @@ from .models import Juego, CustomUser
 from django.contrib.auth import authenticate, login, logout
 from .forms import CustomLoginForm, RegisterForm, JuegoForm, UserEditForm
 from django.contrib.auth.decorators import login_required
+import django.contrib.messages as messages
 
+# views.py
 def inicio(request):
-     return render(request, 'inicio.html')
+    # Verificar si el usuario está autenticado y obtener su color
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        # Color predeterminado para usuarios no autenticados
+        user_color = '#6E1F1B'  # Color predeterminado (rojo)
+    
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'inicio.html', {'color': user_color, 'darker_color': darker_color})
+
 
 def juegos(request):
     juegos = Juego.objects.all()
-    return render(request, 'juegos.html', {'juegos': juegos})
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
 
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'juegos.html', {'juegos': juegos, 'color': user_color, 'darker_color': darker_color})
 
 def adminselector(request):
-    return render(request, 'adminselector.html')
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
+
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'adminselector.html', {'color': user_color, 'darker_color': darker_color})
 
 def register_view(request):
     if request.method == 'POST':
@@ -28,7 +53,15 @@ def register_view(request):
             return redirect('inicio')  # Cambia 'home' por la vista que desees
     else:
         form = RegisterForm()
-    return render(request, 'register.html', {'form': form})
+
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
+
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'register.html', {'form': form, 'color': user_color, 'darker_color': darker_color})
 
 def login_view(request):
     if request.method == "POST":
@@ -36,14 +69,21 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            if user.is_superuser:  
-                return redirect('adminselector')  # Redirige al panel de administración
+            if user.is_superuser:
+                return redirect('adminselector')
             else:
-                return redirect('inicio')  # Redirige a otra vista para usuarios comunes
+                return redirect('inicio')
     else:
         form = CustomLoginForm()
-    
-    return render(request, 'login.html', {'form': form})
+
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
+
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'login.html', {'form': form, 'color': user_color, 'darker_color': darker_color})
 
 def logout_view(request):
     logout(request)
@@ -54,25 +94,121 @@ def addgames(request):
         form = JuegoForm(request.POST)
         if form.is_valid():
             form.save()
-            
-            # Verifica si se presionó "Agregar otro juego"
-            if 'agregar_otro' in request.POST:
-                return redirect('addgames')  # Redirige a la misma página para agregar otro juego
-            
-            return redirect('inicio')  # Si no, redirige a 'inicio'
 
+            if 'agregar_otro' in request.POST:
+                return redirect('addgames')
+            return redirect('inicio')
     else:
         form = JuegoForm()
-    
-    return render(request, 'addgames.html', {'form': form})
+
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
+
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'addgames.html', {'form': form, 'color': user_color, 'darker_color': darker_color})
 
 def gamepage(request, slug):
-    juego = get_object_or_404(Juego, slug=slug)  # Obtiene el juego por su slug
-    return render(request, 'gamepage.html', {'juego': juego})
+    juego = get_object_or_404(Juego, slug=slug)
 
-def logout_view(request):
-    logout(request)
-    return redirect('inicio')
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
+
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'gamepage.html', {'juego': juego, 'color': user_color, 'darker_color': darker_color})
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('account')  # Redirige tras guardar los cambios
+    else:
+        form = UserEditForm(instance=request.user)
+
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
+
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'account.html', {'form': form, 'color': user_color, 'darker_color': darker_color})
+
+def users(request):
+    users = CustomUser.objects.all()
+    for user in users:
+        user.darker_color = darken_color(user.color)
+
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
+
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'users.html', {'users': users, 'color': user_color, 'darker_color': darker_color})
+
+def see_user(request, username):
+    user = get_object_or_404(CustomUser, usuario__username=username)
+
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
+
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'user.html', {'user': user, 'color': user_color, 'darker_color': darker_color})
+
+def gamelist(request):
+    juegos = Juego.objects.all()
+
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
+
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'gamelist.html', {'juegos': juegos, 'color': user_color, 'darker_color': darker_color})
+
+def editgame(request, slug):
+    juego = get_object_or_404(Juego, slug=slug)
+
+    if request.method == 'POST':
+        if 'delete' in request.POST:
+            juego.delete()
+            messages.success(request, f"El juego '{juego.titulo}' ha sido eliminado exitosamente.")
+            return redirect('gamelist')
+
+        form = JuegoForm(request.POST, instance=juego)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "El juego se ha actualizado correctamente.")
+            return redirect('gamelist')
+        else:
+            messages.error(request, "Hubo un error al actualizar el juego.")
+    else:
+        form = JuegoForm(instance=juego)
+
+    if request.user.is_authenticated:
+        user_color = request.user.color
+    else:
+        user_color = '#FF0000'  # Color predeterminado
+
+    darker_color = darken_color(user_color, 0.3)
+
+    return render(request, 'editgame.html', {'form': form, 'juego': juego, 'color': user_color, 'darker_color': darker_color})
+
+# Funciones para convertir colores y oscurecerlos
+
 def hex_to_rgb(hex_color):
     hex_color = hex_color.lstrip('#')
     return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
@@ -86,52 +222,3 @@ def darken_color(hex_color, factor=0.2):
     g = max(int(g * (1 - factor)), 0)
     b = max(int(b * (1 - factor)), 0)
     return rgb_to_hex(r, g, b)
-
-@login_required
-
-def edit_profile(request):
-    if request.method == 'POST':
-        form = UserEditForm(request.POST, instance=request.user)
-
-        if form.is_valid():
-            form.save()
-            return redirect('account')  # Redirige tras guardar los cambios
-    else:
-        form = UserEditForm(instance=request.user)
-
-    # Obtener el color del usuario (por ejemplo, '#FF0000' para rojo)
-    user_color = request.user.color if hasattr(request.user, 'color') else '#FF0000'  # Valor por defecto
-
-    # Oscurecer el color
-    darker_color = darken_color(user_color, 0.3)
-
-    # Pasar tanto el formulario como el color oscuro a la plantilla
-    return render(request, 'account.html', {'form': form, 'color': request.user.color, 'darker_color': darker_color})
-
-def users(request):
-    users = CustomUser.objects.all()
-    for user in users:
-        user.darker_color = darken_color(user.color)
-    return render(request, 'users.html', {'users': users})
-
-def see_user(request, username):
-    # Obtiene el perfil basado en el nombre de usuario
-    user = get_object_or_404(CustomUser, usuario__username=username)
-    return render(request, 'user.html', {'user': user})
-def gamelist(request):
-    juegos = Juego.objects.all()
-    return render(request, 'gamelist.html', {'juegos': juegos})
-
-def editgame(request, slug):
-    juego = get_object_or_404(Juego, slug=slug)
-    if request.method == 'POST':
-        form = JuegoForm(request.POST, instance=juego)
-        if form.is_valid():
-            form.save()  # Esto no modificará el `slug` porque no lo estamos incluyendo en el formulario
-            return redirect('gamelist')  # Redirige a la lista de juegos
-        else:
-            print("Formulario no válido", form.errors)
-    else:
-        form = JuegoForm(instance=juego)
-
-    return render(request, 'editgame.html', {'form': form, 'juego': juego})

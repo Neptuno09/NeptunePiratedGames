@@ -16,10 +16,30 @@
     <script src={% static "jscolor.js" %}></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="{% static 'scripts.js' %}"></script>
+    <style>
+        .card {
+            background-color: {% block cardcolor %}{% endblock %}; /* Fondo rojo oscuro */
+            color: white; /* Texto blanco */
+            border-radius: 15px; /* Bordes redondeados */
+            border: 2px solid {% block carddarkercolor %}{% endblock %}; /* Borde más visible pero no grueso */
+            transition: transform 0.2s, box-shadow 0.2s; /* Animación suave */
+            overflow: hidden; /* Asegura que las imágenes se recorten */
+            padding: 10px; /* Espaciado interno */
+        }
+
+        .card:hover {
+            transform: scale(1.01); /* Aumenta ligeramente el tamaño */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+            border: 2px solid {% block cardhoverdarkercolor %}{% endblock %}; /* Cambia el color del borde al pasar el mouse */
+        }
+    </style>
+    
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm" style="background-color:#6E1F1B">
+    <!-- base.html -->
+<nav class="navbar navbar-expand-sm" style="background-color: {% if user.is_authenticated %}{% block navcolor %}{% endblock %}{% else %}#6E1F1B{% endif %};">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

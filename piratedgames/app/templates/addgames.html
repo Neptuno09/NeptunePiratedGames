@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-
+{%block navcolor%}{{color}}{%endblock%}
 {% block content %}
 <div class="container mt-5">
     <h2>Agregar un Juego</h2>
-    <form method="POST" enctype="multipart/form-data" class="addgame-form">
+    <form method="POST" enctype="multipart/form-data" class="addgame-form" style="background-color: {{color}}; border: {{color}}">
         {% csrf_token %}
         <div class="mb-3">
             <label for="id_titulo" class="form-label">Título del Juego</label>

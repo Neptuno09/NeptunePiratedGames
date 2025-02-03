@@ -1,34 +1,42 @@
 {%extends 'base.html'%}
-
+{%block navcolor%}{{color}}{%endblock%}
 {% block content %}
 <div class="container mt-5">
     <center><h2>Editar {{juego.titulo}}</h2></center>
     <br>
-    <form method="POST" enctype="multipart/form-data" class="addgame-form">
+    <form method="POST" enctype="multipart/form-data" class="addgame-form" style="background-color: {{color}}; border: {{color}}">
         {% csrf_token %}
-
+        
         <div class="mb-3">
-            <label for="id_descripcion" class="form-label">Descripción actual:</label>
-            <p>{{ juego.descripcion_html|safe }}</p>
-            {{ form.descripcion }}
+            <label class="form-label">Editar titulo:</label>
+            {{ form.titulo }}
         </div>
         <hr>
         <div class="mb-3">
-            <label for="id_imagen" class="form-label">Imagen actual:</label>
+            <label class="form-label">Descripción actual (markdown aplicado):</label>
+            <p>{{ juego.descripcion_html|safe }}</p>
+            <hr>
+            <label for="id_descripcion" class="form-label">Editar descripción:</label>
+            {{ form.descripcion }}
+            </div>
+        <hr>
+        <div class="mb-3">
+            <label class="form-label">Imagen actual:</label>
             <img src="{{ juego.imagen }}" class="img-fluid" alt="{{ juego.titulo }} - imagen" style="border-radius: 15px">
             <br><br>
-            <p>Para editarla, introduce la URL de la nueva imagen:</p>
+            <label for="id_imagen" class="form-label">Nueva imagen (URL):</label>
             {{ form.imagen }}
         </div>
         <hr>
         <div class="mb-3">
-            <label for="id_url" class="form-label">Enlace actual:</label>
+            <label class="form-label">Enlace actual:</label>
             <p>{{ juego.url }}</p>
+            <label for="id_url" class="form-label">Editar enlace:</label>
             {{ form.url }}
         </div>
         <hr>
         <div class="mb-3">
-            <label for="id_genero" class="form-label">Género actual:</label>
+            <label class="form-label">Género actual:</label>
             <p>
                 {% if juego.genero == 'NULL' %}
                     Género no especificado
@@ -76,12 +84,18 @@
                     Género desconocido
                 {% endif %}
             </p>
-            <p>Cambiar género:</p>  
+            <label for="id_genero" class="form-label">Editar género:</label>
             {{ form.genero }}
         </div>
         <hr>
         <button type="submit" class="btn btn-primary">Guardar Juego</button>
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancelar</button>
+    </form>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="delete" value="true">
+        <center><button type="submit" class="btn btn-secondary">Eliminar Juego</button></center>
     </form>
 </div>
 <br>

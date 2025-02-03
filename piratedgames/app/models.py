@@ -30,7 +30,7 @@ GENERO_CHOICES = [
 ]
 class Juego(models.Model):
     titulo = models.CharField(max_length=100)
-    descripcion = models.TextField()
+    descripcion = models.TextField(blank=True, null=True)
     imagen = models.URLField(validators=[validate_image_url], blank=True, null=True)
     url = models.URLField(blank=True, null=True)
     fecha = models.DateTimeField(auto_now_add=True)

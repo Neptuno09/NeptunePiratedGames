@@ -17,15 +17,7 @@ body {
 
 /* Diseño general de la tarjeta */
 /* Diseño general de la tarjeta */
-.card {
-    background-color: #6E1F1B; /* Fondo rojo oscuro */
-    color: white; /* Texto blanco */
-    border-radius: 15px; /* Bordes redondeados */
-    border: 2px solid #B22222; /* Borde más visible pero no grueso */
-    transition: transform 0.2s, box-shadow 0.2s; /* Animación suave */
-    overflow: hidden; /* Asegura que las imágenes se recorten */
-    padding: 10px; /* Espaciado interno */
-}
+
 
 
 
@@ -59,11 +51,7 @@ body {
 }
 
 /* Hover en tarjeta */
-.card:hover {
-    transform: scale(1.01); /* Aumenta ligeramente el tamaño */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
-    border: 2px solid #a63d3d; /* Cambia el color del borde al pasar el mouse */
-}
+
 
 .container {
     width: 90%;
@@ -208,7 +196,7 @@ body {
     padding: 20px;            /* Padding general */
     max-width: 500px;         /* Limita el ancho máximo */
     margin: 0 auto;           /* Centra el formulario */
-    background-color: #6E1F1B; /* Color de fondo */
+    background-color: #393939; /* Color de fondo */
     border-radius: 8px;       /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
@@ -252,6 +240,42 @@ body {
 .color-input {
     width: 100px !important; /* Ajusta el tamaño según tus necesidades */
 }
+
+.parrafo-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .parrafo-corto {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Limita a 3 líneas */
+    line-clamp: 3;
+    overflow: hidden;
+    background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0) 100%);
+    transition: height 0.3s ease-in-out;
+  }
+  
+  .parrafo-corto.expandido {
+    -webkit-line-clamp: unset; /* Elimina la restricción de líneas */
+    line-clamp: unset;
+  }
+  
+  .boton-collapse {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 5px 20px;
+  }
+  
+  .boton-collapse:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 @media (max-width: 576px) {
     .search-container {
         flex-direction: rown; /* Coloca el campo de búsqueda y el botón uno debajo del otro */
