@@ -161,7 +161,7 @@ def see_user(request, username):
     if request.user.is_authenticated:
         user_color = request.user.color
     else:
-        user_color = '#FF0000'  # Color predeterminado
+        user_color = '#6E1F1B'  # Color predeterminado
 
     darker_color = darken_color(user_color, 0.5)
 
@@ -173,7 +173,7 @@ def gamelist(request):
     if request.user.is_authenticated:
         user_color = request.user.color
     else:
-        user_color = '#FF0000'  # Color predeterminado
+        user_color = '#6E1F1B'  # Color predeterminado
 
     darker_color = darken_color(user_color, 0.3)
 

@@ -19,10 +19,10 @@
     <script src="{% static 'scripts.js' %}"></script>
     <style>
         .card {
-            background-color: {% block cardcolor %}{% endblock %}; /* Fondo rojo oscuro */
+            background-color: {% if user.is_authenticated %}{% block cardcolor %}{% endblock %}{% else %}#6E1F1B{% endif %}; /* Fondo rojo oscuro */
             color: white; /* Texto blanco */
             border-radius: 15px; /* Bordes redondeados */
-            border: 5px solid {% block carddarkercolor %}{% endblock %}; /* Borde más visible pero no grueso */
+            border: 5px solid {% if user.is_authenticated %}{% block carddarkercolor %}{% endblock %}{% else %}#561d1b{% endif %}; /* Borde más visible pero no grueso */
             transition: transform 0.2s, box-shadow 0.2s; /* Animación suave */
             overflow: hidden; /* Asegura que las imágenes se recorten */
             padding: 10px; /* Espaciado interno */
@@ -31,7 +31,7 @@
         .card:hover {
             transform: scale(1.01); /* Aumenta ligeramente el tamaño */
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
-            border: 2px solid {% block cardhoverdarkercolor %}{% endblock %}; /* Cambia el color del borde al pasar el mouse */
+            border: 2px solid {% if user.is_authenticated %}{% block cardhoverdarkercolor %}{% endblock %}{% else %}#561d1b{% endif %}; /* Cambia el color del borde al pasar el mouse */
         }
     </style>
     
